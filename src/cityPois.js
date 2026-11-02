@@ -15,6 +15,63 @@
  *   buildingHeight — estimated height of landmark center above ground (meters)
  */
 export const CITY_POIS = {
+  durham_chapel_hill: {
+    name: 'Durham–Chapel Hill',
+    groundElevation: 100,
+
+    viewBounds: {
+      southwest: { lat: 35.70, lng: -79.15 },
+      northeast: { lat: 36.12, lng: -78.70 },
+    },
+
+    pois: [
+      {
+        name: 'Downtown Durham',
+        lat: 35.9960,
+        lon: -78.9010,
+        alt: 850,
+        pitch: -35,
+        heading: 0,
+        buildingHeight: 20,
+      },
+      {
+        name: 'UNC Chapel Hill',
+        lat: 35.9132,
+        lon: -79.0558,
+        alt: 950,
+        pitch: -35,
+        heading: 45,
+        buildingHeight: 20,
+      },
+      {
+        name: 'Duke University',
+        lat: 36.0014,
+        lon: -78.9382,
+        alt: 900,
+        pitch: -35,
+        heading: 0,
+        buildingHeight: 25,
+      },
+      {
+        name: 'Research Triangle Park',
+        lat: 35.8894,
+        lon: -78.8668,
+        alt: 1600,
+        pitch: -45,
+        heading: 30,
+        buildingHeight: 20,
+      },
+      {
+        name: 'Jordan Lake',
+        lat: 35.7596,
+        lon: -79.0163,
+        alt: 2500,
+        pitch: -50,
+        heading: 0,
+        buildingHeight: 0,
+      },
+    ],
+  },
   austin: {
     name: 'Austin',
     groundElevation: 150, // meters above WGS84 ellipsoid
