@@ -34,6 +34,8 @@ import { createInfrastructureLayers } from '../data/infrastructure.js';
 import { localGeoJsonServices } from './localGeojsonServices.js';
 import { createBhoteKoshiEventLayer } from '../data/bhoteKoshiEvent.js';
 import { createBhoteKoshiLocatorLayer } from '../data/bhoteKoshiLocator.js';
+// NC FRIS: three independent imagery layers.
+import { FRIS_DEFINITIONS, createFrisFloodZoneLayers } from '../layers/frisFloodZones.js';
 
 /**
  * Hardware-local layers are registered like any other but never enter share
@@ -43,10 +45,19 @@ export const LOCAL_ONLY_LAYER_METADATA = Object.freeze([
   Object.freeze({ id: 'local-adsb', disposition: 'local-only' }),
 ]);
 
+// NC FRIS is a local customization: toggles work, but public share links
+// and the upstream layer-token registry are left untouched.
+const FRIS_LAYER_METADATA = Object.freeze(
+  FRIS_DEFINITIONS.map(({ id }) =>
+    Object.freeze({ id, disposition: 'local-only' }),
+  ),
+);
+
 /** Serialization metadata for every layer the application catalog constructs. */
 export const APPLICATION_LAYER_METADATA = Object.freeze([
   ...LAYER_STATE_REGISTRY,
   ...LOCAL_ONLY_LAYER_METADATA,
+  ...FRIS_LAYER_METADATA,
 ]);
 
 /** Construct the current catalog without choosing any source provider.
@@ -120,6 +131,7 @@ export function createApplicationCatalog({
           ...(resolveAsset ? { resolveAsset } : {}),
         }),
         createApplicationEarthquakes({ source: sources.earthquakes }),
+        ...createFrisFloodZoneLayers(),
         createApplicationAirQuality({ source: sources['air-quality'] }),
         createApplicationFirePerimeters({
           source: sources['fire-perimeters'],

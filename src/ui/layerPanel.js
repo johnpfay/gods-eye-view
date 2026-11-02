@@ -78,6 +78,14 @@ const PANEL_GROUPS = [
     ],
   },
   {
+    label: msg('Flood mapping'),
+    ids: [
+      'nc-fris-flood-hazard-areas',
+      'nc-fris-flood-hazard-lines',
+      'nc-fris-stream-centerlines',
+    ],
+  },
+  {
     label: msg('Weather'),
     ids: [
       'air-quality',
